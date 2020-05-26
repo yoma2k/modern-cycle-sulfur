@@ -270,11 +270,6 @@ contains
 
     !scale geometric flux
     photoFlux(:) =  pi*rstar**2/dstar**2 * photoFlux(:)
-	open(58,file="solar_flux.txt",status="old")
-	  do i=1,photoBinsNumber
-	    read(58,*) photoFlux(i)
-	  end do
-     close(58)	
 
   end subroutine patmo_setFluxBB
 

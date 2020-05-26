@@ -12,11 +12,6 @@ contains
 
     !total density per layer
     ntot(:) = sum(nAll(:,1:chemSpeciesNumber),2)
-   open(59,file="H2SO4_photorate.txt",status="old")
-   open(60,file="SO2_O_rate.txt",status="old")
-   open(61,file="SO2_OH_rate.txt",status="old")   
-   open(62,file="CS2_OH_rate.txt",status="old")  
-   open(63,file="DMS_OH_rate.txt",status="old")  
 
     !loop on cells
     do icell=1,cellsNumber
@@ -30,8 +25,7 @@ contains
       krate(icell,2) = 2.1d-11*exp(-2200/T)
 
       !CS2 + OH -> SH + COS
-!      krate(icell,3) = 2.0d-15
-      read(62,*) krate(icell,3)	  
+      krate(icell,3) = 2.0d-15
 
       !CS2 + O -> CS + SO
       krate(icell,4) = 3.20d-11*exp(-650/T)
@@ -106,19 +100,16 @@ contains
       krate(icell,27) = 1.30d-12*exp(-330/T)
 
       !SO2 + O -> SO3
-      !krate(icell,28) = 1.80d-33*(T/300)**(2.00)
-       read(60,*) krate(icell,28)
+      krate(icell,28) = 1.80d-33*(T/300)**(2.00)
 
       !SO2 + OH -> HSO3
-      !krate(icell,29) = 3.30d-31*(T/300)**(-4.30)
-	  read(61,*) krate(icell,29)	  
+      krate(icell,29) = 3.30d-31*(T/300)**(-4.30)
 
       !SO3 + H2O -> H2SO4
       krate(icell,30) = 1.20d-15
 
       !H2SO4 -> SO2 + OH + OH
-      !krate(icell,31) = 1.20d-15
-	  read(59,*) krate(icell,31)
+      krate(icell,31) = 1.20d-15
 
       !O + O2 -> O3
       krate(icell,32) = 0d0
@@ -136,9 +127,8 @@ contains
       krate(icell,36) = 1.2d-11*exp(-260/T)
 
       !CH3SCH3 + OH -> SO2 + CH4O3S
-!      krate(icell,37) = 3.04d-12*exp(350/T)
-	  read(63,*) krate(icell,37)
-	  
+      krate(icell,37) = 3.04d-12*exp(350/T)
+
     end do
 
   end subroutine computeRates

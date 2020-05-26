@@ -42,21 +42,14 @@ contains
     implicit none
     integer,intent(in)::index
     real*8,intent(in)::tau(photoBinsNumber,cellsNumber)
-    real*8::integrateXsec(cellsNumber),dE
+    real*8::integrateXsec(cellsNumber)
     integer::j
 
     !loop on cells (stride photobins)
-!    do j=1,cellsNumber
-!      integrateXsec(j) = sum(xsecAll(:,index)*photoFlux(:) &
-!          /energyMid(:)*energySpan(:)*exp(-tau(:,j))) / planck_eV
-!    end do
-	dE=0.04956071 !nm
-	
-    !loop on cells (stride photobins)
     do j=1,cellsNumber
-	      integrateXsec(j) = sum(xsecAll(:,index)*photoFlux(:)*exp(-tau(:,j))*dE) 
+      integrateXsec(j) = sum(xsecAll(:,index)*photoFlux(:) &
+          /energyMid(:)*energySpan(:)*exp(-tau(:,j))) / planck_eV
     end do
-
 
   end function integrateXsec
 

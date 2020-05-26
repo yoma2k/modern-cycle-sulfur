@@ -21,8 +21,8 @@ contains
 
     !extrapolate lower and upper limits
     do i=1,cellsNumber
-      Tgas(i) = max(inTgas(i),2d2)
-      Tgas(i) = min(Tgas(i),5d3)
+      Tgas(i) = min(inTgas(i),2d2)
+      Tgas(i) = max(Tgas(i),5d3)
     end do
 
     lnTgas(:) = log(Tgas(:))
@@ -723,94 +723,94 @@ contains
 
     !SO2 + OH + OH -> H2SO4
     do i=1,cellsNumber
-!      if(Tgas(i)<1d3.and.Tgas(i).ge.2d2) then
-!        krate(i,76) = krate(i,31)*exp(-7.124894d0*(lnTgas(i)-1d0) &
-!            + 1.677694d-2*Tgas(i) &
-!            - 9.790732d-6*Tgas2(i) &
-!            + 4.249147d-9*Tgas3(i) &
-!            - 8.65185d-13*Tgas4(i) &
-!            + 6.03382d4*invTgas(i) &
-!            - 3.821053d0)*(1.3806488d-22*Tgas(i))**(2)
-!      elseif(Tgas(i).ge.1d3.and.Tgas(i).le.6d3) then
-!        krate(i,76) = krate(i,31)*exp(2.742437d-1*(lnTgas(i)-1d0) &
-!            + 8.570799d-4*Tgas(i) &
-!            - 1.209464d-7*Tgas2(i) &
-!            + 9.544247d-12*Tgas3(i) &
-!            - 3.298127d-16*Tgas4(i) &
-!            + 6.189766d4*invTgas(i) &
-!            - 3.946799d1)*(1.3806488d-22*Tgas(i))**(2)
-!      else
+      if(Tgas(i)<1d3.and.Tgas(i).ge.2d2) then
+        krate(i,76) = krate(i,31)*exp(-7.124894d0*(lnTgas(i)-1d0) &
+            + 1.677694d-2*Tgas(i) &
+            - 9.790732d-6*Tgas2(i) &
+            + 4.249147d-9*Tgas3(i) &
+            - 8.65185d-13*Tgas4(i) &
+            + 6.03382d4*invTgas(i) &
+            - 3.821053d0)*(1.3806488d-22*Tgas(i))**(2)
+      elseif(Tgas(i).ge.1d3.and.Tgas(i).le.6d3) then
+        krate(i,76) = krate(i,31)*exp(2.742437d-1*(lnTgas(i)-1d0) &
+            + 8.570799d-4*Tgas(i) &
+            - 1.209464d-7*Tgas2(i) &
+            + 9.544247d-12*Tgas3(i) &
+            - 3.298127d-16*Tgas4(i) &
+            + 6.189766d4*invTgas(i) &
+            - 3.946799d1)*(1.3806488d-22*Tgas(i))**(2)
+      else
         krate(i,76) = 0d0
-     ! end if
+      end if
     end do
 
     !O3 -> O + O2
     do i=1,cellsNumber
-     ! if(Tgas(i)<1d3.and.Tgas(i).ge.2d2) then
-     !   krate(i,77) = krate(i,32)*exp(3.543341d0*(lnTgas(i)-1d0) &
-     !       - 4.164922d-3*Tgas(i) &
-     !       + 4.402935d-7*Tgas2(i) &
-     !       + 5.434827d-10*Tgas3(i) &
-     !       - 2.202172d-13*Tgas4(i) &
-     !       - 1.219382d4*invTgas(i) &
-     !       - 2.572867d0)*(1.3806488d-22*Tgas(i))**(-1)
-     ! elseif(Tgas(i).ge.1d3.and.Tgas(i).le.6d3) then
-     !   krate(i,77) = krate(i,32)*exp(-6.125694d0*(lnTgas(i)-1d0) &
-     !       + 6.280764d-3*Tgas(i) &
-     !       - 1.355459d-6*Tgas2(i) &
-     !       + 1.4979d-10*Tgas3(i) &
-     !       - 6.392726d-15*Tgas4(i) &
-     !       - 1.533445d4*invTgas(i) &
-     !       + 4.921999d1)*(1.3806488d-22*Tgas(i))**(-1)
-     ! else
+      if(Tgas(i)<1d3.and.Tgas(i).ge.2d2) then
+        krate(i,77) = krate(i,32)*exp(3.543341d0*(lnTgas(i)-1d0) &
+            - 4.164922d-3*Tgas(i) &
+            + 4.402935d-7*Tgas2(i) &
+            + 5.434827d-10*Tgas3(i) &
+            - 2.202172d-13*Tgas4(i) &
+            - 1.219382d4*invTgas(i) &
+            - 2.572867d0)*(1.3806488d-22*Tgas(i))**(-1)
+      elseif(Tgas(i).ge.1d3.and.Tgas(i).le.6d3) then
+        krate(i,77) = krate(i,32)*exp(-6.125694d0*(lnTgas(i)-1d0) &
+            + 6.280764d-3*Tgas(i) &
+            - 1.355459d-6*Tgas2(i) &
+            + 1.4979d-10*Tgas3(i) &
+            - 6.392726d-15*Tgas4(i) &
+            - 1.533445d4*invTgas(i) &
+            + 4.921999d1)*(1.3806488d-22*Tgas(i))**(-1)
+      else
         krate(i,77) = 0d0
-     ! end if
+      end if
     end do
 
     !N + N -> N2
     do i=1,cellsNumber
-     ! if(Tgas(i)<1d3.and.Tgas(i).ge.2d2) then
-     !   krate(i,78) = krate(i,33)*exp(-1.468995d0*(lnTgas(i)-1d0) &
-     !       - 6.183049d-5*Tgas(i) &
-     !       - 8.383324d-8*Tgas2(i) &
-     !       + 2.029422d-10*Tgas3(i) &
-     !       - 7.044062d-14*Tgas4(i) &
-     !       + 1.132563d5*invTgas(i) &
-     !       - 5.420347d0)*(1.3806488d-22*Tgas(i))**(1)
-     ! elseif(Tgas(i).ge.1d3.and.Tgas(i).le.6d3) then
-     !   krate(i,78) = krate(i,33)*exp(-1.879309d0*(lnTgas(i)-1d0) &
-     !       + 5.235596d-4*Tgas(i) &
-     !       - 4.24307d-8*Tgas2(i) &
-     !       + 1.512378d-12*Tgas3(i) &
-     !       - 2.676777d-17*Tgas4(i) &
-     !       + 1.131915d5*invTgas(i) &
-     !       - 3.427331d0)*(1.3806488d-22*Tgas(i))**(1)
-     ! else
+      if(Tgas(i)<1d3.and.Tgas(i).ge.2d2) then
+        krate(i,78) = krate(i,33)*exp(-1.468995d0*(lnTgas(i)-1d0) &
+            - 6.183049d-5*Tgas(i) &
+            - 8.383324d-8*Tgas2(i) &
+            + 2.029422d-10*Tgas3(i) &
+            - 7.044062d-14*Tgas4(i) &
+            + 1.132563d5*invTgas(i) &
+            - 5.420347d0)*(1.3806488d-22*Tgas(i))**(1)
+      elseif(Tgas(i).ge.1d3.and.Tgas(i).le.6d3) then
+        krate(i,78) = krate(i,33)*exp(-1.879309d0*(lnTgas(i)-1d0) &
+            + 5.235596d-4*Tgas(i) &
+            - 4.24307d-8*Tgas2(i) &
+            + 1.512378d-12*Tgas3(i) &
+            - 2.676777d-17*Tgas4(i) &
+            + 1.131915d5*invTgas(i) &
+            - 3.427331d0)*(1.3806488d-22*Tgas(i))**(1)
+      else
         krate(i,78) = 0d0
-     ! end if
+      end if
     end do
 
     !SO4 -> SO2
     do i=1,cellsNumber
-     ! if(Tgas(i)<1d3.and.Tgas(i).ge.2d2) then
-     !   krate(i,79) = krate(i,34)*exp(2.67174d0*(lnTgas(i)-1d0) &
-     !       - 1.667105d-2*Tgas(i) &
-     !       + 9.453086d-6*Tgas2(i) &
-     !       - 3.840731d-9*Tgas3(i) &
-     !       + 7.244981d-13*Tgas4(i) &
-     !       + 6.428951d3*invTgas(i) &
-     !       - 1.111545d1)
-     ! elseif(Tgas(i).ge.1d3.and.Tgas(i).le.6d3) then
-     !   krate(i,79) = krate(i,34)*exp(-4.700143d0*(lnTgas(i)-1d0) &
-     !       - 6.490479d-4*Tgas(i) &
-     !       + 8.865994d-8*Tgas2(i) &
-     !       - 7.503263d-12*Tgas3(i) &
-     !       + 2.833749d-16*Tgas4(i) &
-     !       + 4.953039d3*invTgas(i) &
-     !       + 2.414516d1)
-     ! else
+      if(Tgas(i)<1d3.and.Tgas(i).ge.2d2) then
+        krate(i,79) = krate(i,34)*exp(2.67174d0*(lnTgas(i)-1d0) &
+            - 1.667105d-2*Tgas(i) &
+            + 9.453086d-6*Tgas2(i) &
+            - 3.840731d-9*Tgas3(i) &
+            + 7.244981d-13*Tgas4(i) &
+            + 6.428951d3*invTgas(i) &
+            - 1.111545d1)
+      elseif(Tgas(i).ge.1d3.and.Tgas(i).le.6d3) then
+        krate(i,79) = krate(i,34)*exp(-4.700143d0*(lnTgas(i)-1d0) &
+            - 6.490479d-4*Tgas(i) &
+            + 8.865994d-8*Tgas2(i) &
+            - 7.503263d-12*Tgas3(i) &
+            + 2.833749d-16*Tgas4(i) &
+            + 4.953039d3*invTgas(i) &
+            + 2.414516d1)
+      else
         krate(i,79) = 0d0
-     ! end if
+      end if
     end do
 
     !SO2 -> CH3SCH3 + O
@@ -861,25 +861,25 @@ contains
 
     !SO2 + CH4O3S -> CH3SCH3 + OH
     do i=1,cellsNumber
-     ! if(Tgas(i)<1d3.and.Tgas(i).ge.2d2) then
-     !   krate(i,82) = krate(i,37)*exp(3.171767d-1*(lnTgas(i)-1d0) &
-     !       - 2.342044d-3*Tgas(i) &
-     !       - 6.420484d-7*Tgas2(i) &
-     !       + 8.147534d-10*Tgas3(i) &
-     !       - 2.199762d-13*Tgas4(i) &
-     !       - 4.031441d4*invTgas(i) &
-     !       - 8.072663d0)
-     ! elseif(Tgas(i).ge.1d3.and.Tgas(i).le.6d3) then
-     !   krate(i,82) = krate(i,37)*exp(-2.545704d0*(lnTgas(i)-1d0) &
-     !       - 2.859464d-4*Tgas(i) &
-     !       + 5.634379d-8*Tgas2(i) &
-     !       - 5.532956d-12*Tgas3(i) &
-     !       + 2.123002d-16*Tgas4(i) &
-     !       - 4.130451d4*invTgas(i) &
-     !       + 7.676252d0)
-     ! else
+      if(Tgas(i)<1d3.and.Tgas(i).ge.2d2) then
+        krate(i,82) = krate(i,37)*exp(3.171767d-1*(lnTgas(i)-1d0) &
+            - 2.342044d-3*Tgas(i) &
+            - 6.420484d-7*Tgas2(i) &
+            + 8.147534d-10*Tgas3(i) &
+            - 2.199762d-13*Tgas4(i) &
+            - 4.031441d4*invTgas(i) &
+            - 8.072663d0)
+      elseif(Tgas(i).ge.1d3.and.Tgas(i).le.6d3) then
+        krate(i,82) = krate(i,37)*exp(-2.545704d0*(lnTgas(i)-1d0) &
+            - 2.859464d-4*Tgas(i) &
+            + 5.634379d-8*Tgas2(i) &
+            - 5.532956d-12*Tgas3(i) &
+            + 2.123002d-16*Tgas4(i) &
+            - 4.130451d4*invTgas(i) &
+            + 7.676252d0)
+      else
         krate(i,82) = 0d0
-     ! end if
+      end if
     end do
 
   end subroutine computeReverseRates
