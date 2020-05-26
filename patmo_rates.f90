@@ -140,6 +140,12 @@ contains
 	  read(63,*) krate(icell,37)
 	  
     end do
+	
+    close(59)
+    close(60)
+    close(61)
+    close(62)
+    close(63)
 
   end subroutine computeRates
 
