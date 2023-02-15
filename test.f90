@@ -97,7 +97,7 @@ program test
  	 call patmo_dumpDensityToFile(36,t,patmo_idx_SO2)
 	 call patmo_dumpDensityToFile(37,t,patmo_idx_H2SO4)
 	 call patmo_dumpDensityToFile(38,t,patmo_idx_SO4)
- 	 ! call patmo_dumpDensityToFile(39,t,patmo_idx_CS2)
+ 	 call patmo_dumpDensityToFile(39,t,patmo_idx_CS2)
   	 ! call patmo_dumpDensityToFile(40,t,patmo_idx_H2S)
      ! call patmo_dumpDensityToFile(41,t,patmo_idx_SO3)
      ! call patmo_dumpDensityToFile(42,t,patmo_idx_CH3SCH3)
